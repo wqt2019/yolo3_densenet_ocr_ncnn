@@ -62,14 +62,14 @@ if __name__ == '__main__':
 
     modelPath = os.path.join(os.getcwd(), './densenet/densenet.h5')
 
-    # input = Input(shape=(32, None,1), name='the_input')
-    # y_pred= densenet.dense_cnn(input, nclass)
-    # basemodel = Model(inputs=input, outputs=y_pred)
-    # basemodel.load_weights(modelPath)
-    # basemodel.summary()
-    # predict = basemodel.predict(img)
-    # result = decode(predict)
-    # print('result:',result)
+    input = Input(shape=(32, 280,1), name='the_input')
+    y_pred= densenet.dense_cnn(input, nclass)
+    basemodel = Model(inputs=input, outputs=y_pred)
+    basemodel.load_weights(modelPath)
+    basemodel.summary()
+    predict = basemodel.predict(img)
+    result = decode(predict)
+    print('result:',result)
 
 
     # tmp_output = basemodel.layers[1].output
@@ -77,10 +77,10 @@ if __name__ == '__main__':
     # basemodel1 = Model(inputs=basemodel.input, outputs=tmp_output)
     # predict1 = basemodel1.predict(img)
 
-    basemodel = load_model(modelPath)
-    predict = basemodel.predict(img)
-    result = decode(predict)
-    print('result:',result)
+    #basemodel = load_model(modelPath)
+    #predict = basemodel.predict(img)
+    #result = decode(predict)
+    #print('result:',result)
 
     # convert to onnx model
     onnx_model = keras2onnx.convert_keras(basemodel,channel_first_inputs=['the_input'])
